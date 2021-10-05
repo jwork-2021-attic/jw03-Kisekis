@@ -1,8 +1,8 @@
 package example;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 
 import example.classloader.SteganographyClassLoader;
@@ -22,10 +22,14 @@ public class Scene {
 
         Geezer theGeezer = Geezer.getTheGeezer();
 
-        SteganographyClassLoader loader = new SteganographyClassLoader(
-                new URL("https://cdn.njuics.cn/example.BubbleSorter.png"));
+        //get absolutePath of the image
+        File img = new File("example.QuickSorter.png");
+        String absolutePath = img.getAbsolutePath();
 
-        Class c = loader.loadClass("example.BubbleSorter");
+        SteganographyClassLoader loader = new SteganographyClassLoader(
+                new URL("file:///"+absolutePath));
+
+        Class c = loader.loadClass("example.QuickSorter");
 
         Sorter sorter = (Sorter) c.newInstance();
 
